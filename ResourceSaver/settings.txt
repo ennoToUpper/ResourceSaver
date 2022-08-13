@@ -3,3 +3,4 @@ Server RAM> 2G
 Jar Name> paper-1.19.1-109.jar
 Server Directory> C:\Server\Minecraft\
 HTTP Keyword> Minecraft
+Address> 127.0.0.1

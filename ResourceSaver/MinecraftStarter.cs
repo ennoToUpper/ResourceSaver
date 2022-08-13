@@ -14,7 +14,7 @@ namespace minecraftstarter
         {
             WriteLog.WriteLogMessage("Starting Server");
             ProcessStartInfo processToRunInfo = new ProcessStartInfo();
-            processToRunInfo.Arguments = ($"-Xmx{Settings.arguments} -Xms{Settings.arguments} -jar {Settings.jarname}");
+            processToRunInfo.Arguments = ($"-Xmx{Settings.arguments} -Xms256m -jar {Settings.jarname}");
             processToRunInfo.CreateNoWindow = true;
             processToRunInfo.WorkingDirectory = Settings.directory;
             processToRunInfo.FileName = "java.exe";

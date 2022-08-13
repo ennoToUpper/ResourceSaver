@@ -14,6 +14,7 @@ namespace ResourceSaver
         internal static string jarname = "";
         internal static string directory = "";
         internal static string keyword = "";
+        internal static string address = "";
 
         internal static void LoadSettings()
         {
@@ -36,7 +37,8 @@ namespace ResourceSaver
                         case "Server RAM": arguments = clean; break;
                         case "Jar Name": jarname = clean; break;
                         case "Server Directory": directory = clean; break;
-                        case " HTTP Keyword": keyword = clean; break;
+                        case "HTTP Keyword": keyword = clean; break;
+                        case "Address": address = clean; break;
                         default: break;
                     }
                 }

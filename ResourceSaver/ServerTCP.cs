@@ -15,7 +15,7 @@ namespace minecraftstarter
             TcpListener? server = null;
 
             try
-            {               
+            {
                 int port = Settings.port;
 
                 server = new TcpListener(IPAddress.Any, port);
@@ -31,6 +31,7 @@ namespace minecraftstarter
 
                     TcpClient client = server.AcceptTcpClient();
                     WriteLog.WriteLogMessage("Connected!");
+                    Thread.Sleep(100);
 
                     data = "";
 
@@ -38,9 +39,17 @@ namespace minecraftstarter
 
                     int i;
 
-                    while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
+                    string fullData = "";
+
+                    bool mcClient = true;
+
+                    while (stream.DataAvailable)
                     {
+                        i = stream.Read(bytes, 0, bytes.Length);
+
                         data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+
+                        fullData += data;
 
                         data = data.ToUpper();
 
@@ -48,14 +57,25 @@ namespace minecraftstarter
 
                         stream.Write(msg, 0, msg.Length);
 
-                        if(data.Contains("\u0001\0") || data.Contains(Settings.keyword, StringComparison.OrdinalIgnoreCase))
+                        if ((data.Contains(Settings.address, StringComparison.CurrentCultureIgnoreCase) 
+                            && !data.Contains("Host", StringComparison.CurrentCultureIgnoreCase)) 
+                            || data.Contains(Settings.keyword, StringComparison.OrdinalIgnoreCase))
                         {
-                            string valueDetected = data.Contains('\u0001') ? "Minecraft-Client" : "Keyword";
-
-                            WriteLog.WriteLogMessage(valueDetected + " recognized!");
+                            mcClient = !data.Contains(Settings.keyword, StringComparison.OrdinalIgnoreCase);
                             RunServer = true;
-                            break;
                         }
+                    }
+
+                    WriteLog.WriteLogMessage(fullData);
+
+                    if (RunServer)
+                    {
+                        string valueDetected = mcClient ? "Minecraft-Client" : "Keyword";
+                        WriteLog.WriteLogMessage(valueDetected + " recognized!");
+                    }
+                    else
+                    {
+                        WriteLog.WriteLogMessage("Connection has been rejected");
                     }
 
                     break;
