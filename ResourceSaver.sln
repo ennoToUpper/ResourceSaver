@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResourceSaver", "minecraftstarter\ResourceSaver.csproj", "{F05D38AD-4D32-4474-955A-3B12451E5DCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResourceSaver", "ResourceSaver\ResourceSaver.csproj", "{F05D38AD-4D32-4474-955A-3B12451E5DCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
